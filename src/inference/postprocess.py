@@ -45,12 +45,12 @@ def draw_lane_curves(image, mask, degree=2, min_y_span=30):
 
         y_min, y_max = ys.min(), ys.max()
         if (y_max - y_min) < min_y_span:
-            continue  # skip tiny/noisy blobs
+            continue  
 
         coeffs = fit_polynomial(xs, ys, degree)
         fitted_curves.append(coeffs)
 
-        # Only draw within the actual detected range, not the full image height
+        
         y_range = np.linspace(y_min, y_max, int(y_max - y_min))
         x_fit = np.polyval(coeffs, y_range)
 
